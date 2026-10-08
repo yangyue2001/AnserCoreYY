@@ -1,0 +1,26 @@
+import mill._
+import mill.scalalib._
+
+object yanqihu extends SbtModule {
+  override def millSourcePath = super.millSourcePath / os.up
+  override def scalaVersion = "2.13.17"
+  def chiselVersion = "7.3.0"
+
+  override def scalacOptions = Seq(
+    "-language:reflectiveCalls",
+    "-deprecation",
+    "-feature",
+    "-Ymacro-annotations",
+    "-Ytasty-reader",
+    "-Xcheckinit",
+  )
+  override def ivyDeps = Agg(
+    ivy"org.chipsalliance::chisel:$chiselVersion",
+  )
+  override def scalacPluginIvyDeps = Agg(
+    ivy"org.chipsalliance:::chisel-plugin:$chiselVersion",
+  )
+}
+
+
+

@@ -1,0 +1,74 @@
+# Ignore everything by default.
+*
+
+# Keep this ignore file.
+!.gitignore
+
+# Project build definitions.
+!build.mill
+!.mill-version
+
+# Source code, notes, tests, scripts, and make files.
+!note/
+!note/**
+!src/
+!src/**
+!test/
+!test/**
+!scripts/
+!scripts/**
+!Makefile
+!makefile
+!*.mk
+
+# Re-ignore generated files inside allowed directories.
+project/
+target/
+**/target/
+**/out/
+**/build/
+**/generated/
+**/generated-src/
+**/generated-src-*/
+
+# Re-ignore common local/editor/cache files if they appear under allowed dirs.
+**/.metals/
+**/.bloop/
+**/.bsp/
+**/.idea/
+**/.vscode/
+**/.cache/
+**/.coursier/
+**/.ivy2/
+**/.sbt-home/
+**/.DS_Store
+
+# Re-ignore generated hardware/simulation artifacts.
+**/*.fir
+**/*.firrtl
+**/*.anno.json
+**/*.lo.fir
+**/*.hi.fir
+**/*.mlir
+**/*.sv
+**/*.v
+**/*.vcd
+**/*.fst
+**/*.fsdb
+**/*.gtkw
+**/*.log
+**/*.dump
+**/*.jou
+**/*.wdb
+**/*.key
+
+# Re-ignore native/temp artifacts.
+**/*.o
+**/*.a
+**/*.so
+**/*.d
+**/*.tmp
+**/*.temp
+**/*.bak
+**/*.swp
+**/*~
