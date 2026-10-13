@@ -8,12 +8,12 @@ import yanqihu.frontend.bpu.BpuTrain
 class Ftb extends FtbModule with FtbHelper{
   class FtbIO extends FtbBundle {
     val s1Fire  = Input(Bool())
-    val s1Pc    = Input(UInt(PcWidth.W))
-    val s2Pc    = Input(UInt(PcWidth.W))
+    val s1Pc    = Input(UInt(pcWidth.W))
+    val s2Pc    = Input(UInt(pcWidth.W))
     val predictReq = Flipped(Decoupled(new FtbPredReq))
 
     val train = Flipped(Decoupled(new BpuTrain))
-    val trainS1PC = Input(UInt(PcWidth.W))
+    val trainS1PC = Input(UInt(pcWidth.W))
 
     val prediction = Output(new FtbPrediction)
     val meta       = Output(new FtbMeta)
@@ -96,8 +96,8 @@ class Ftb extends FtbModule with FtbHelper{
   trainNewSlot.valid := true.B
   trainNewSlot.offset := fetchBlockInfo.endOffset
   trainNewSlot.lower := fetchBlockInfo.target(11, 0)
-  val targetHigh = fetchBlockInfo.target(PcWidth-1, 12)
-  val trainPcHigh = trainPc(PcWidth-1, 12)
+  val targetHigh = fetchBlockInfo.target(pcWidth-1, 12)
+  val trainPcHigh = trainPc(pcWidth-1, 12)
   trainNewSlot.tarStat := Mux1H(Seq(
     (targetHigh === trainPcHigh) -> 0.U(2.W),
     (targetHigh > trainPcHigh) -> 1.U(2.W),

@@ -8,7 +8,7 @@ import yanqihu.frontend.bpu.phr.PhrAllFoldedHistories
 trait TableHelper extends HasTageParameters{
 
   def getBankIndex(pc: UInt): UInt ={
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     pc(BankIdxWidth-1,0)
   }
 

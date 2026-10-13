@@ -7,6 +7,6 @@ trait MmuHelpers {
   this: HasMmuParameters =>
 
   def getVpnFromVaddr(vaddr: UInt): UInt ={
-    vaddr(vaddrWidth, pageOffsetWidth)
+    vaddr(vaddrWidth, PageOffsetWidth)
   }
 }

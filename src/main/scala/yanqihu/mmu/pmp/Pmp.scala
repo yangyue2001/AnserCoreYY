@@ -2,8 +2,6 @@ package yanqihu.mmu.pmp
 
 import chisel3._
 import chisel3.util._
-import yanqihu.mmu.pmp.PmpCfgA.napot
-import yanqihu.mmu.MmuConstant.MMode
 
 class Pmp(
   numCheckPorts: Int = 1
@@ -43,9 +41,7 @@ class Pmp(
     defaultResp.allowFetch := true.B
     defaultResp.allowLoad := true.B
     defaultResp.allowStore := true.B
-    pmpResp(req):= Mux(matchHIt && (!reqPriv === MMode.U || hitPmp.l) ,new PmpResp, ??? )
-
-
+    //pmpResp(req):= Mux(matchHIt && (!reqPriv === MMode.U || hitPmp.l) ,new PmpResp, ??? )
   }
 
   io.pmpResp := pmpResp

@@ -15,7 +15,7 @@ import yanqihu.frontend.bpu.ras._
 class Bpu extends BpuModule {
    class BpuIO extends BpuBundle {
     val ctrl = Input(new BpuCtrl)
-    val resetVector = Input(UInt(PcWidth.W))
+    val resetVector = Input(UInt(pcWidth.W))
     val fromFtq = Flipped(new FtqToBpuIO)
     val toFtq = new BpuToFtqIO
   }
@@ -56,8 +56,8 @@ class Bpu extends BpuModule {
   val s1Taken    = Wire(Bool())
   val s2Taken    = Wire(Bool())
 
-  val s1PredTarget = Wire(UInt(PcWidth.W))
-  val s2OverrideTarget = Wire(UInt(PcWidth.W))
+  val s1PredTarget = Wire(UInt(pcWidth.W))
+  val s2OverrideTarget = Wire(UInt(pcWidth.W))
   val s2Override = Wire(Bool())
 
 
@@ -73,7 +73,7 @@ class Bpu extends BpuModule {
   //-----------------------------s0-------------------------
   val s0Valid = RegInit(false.B)
   val s0OutValid = Wire(Bool())
-  val s0Pc = Wire(0.U(PcWidth.W))
+  val s0Pc = Wire(0.U(pcWidth.W))
   val s0Stall = Wire(Bool())
 
   //-----------------------pc gen-----------------------------
@@ -136,7 +136,7 @@ class Bpu extends BpuModule {
   tage.io.s1Fire := s1Fire
   //ittage.io.s1Fire := s1Fire
   //-----------------------------s2--------------------------
-  val s1ToS2Target = Reg(UInt(PcWidth.W))
+  val s1ToS2Target = Reg(UInt(pcWidth.W))
 
   val ftbPrediction = ftb.io.prediction
   val tagePrediction = tage.io.prediction

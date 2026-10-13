@@ -125,7 +125,7 @@ class FetchMshrResp(params: FrontendParameters) extends Bundle {
   val data = UInt(params.fetchBits.W)
 }
 
-class IbufferEnq(params: FrontendParameters) extends Bundle {
+class IBufferEnq(params: FrontendParameters) extends Bundle {
   val packet = new FetchPacket(params)
 }
 */

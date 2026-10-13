@@ -17,8 +17,8 @@ import yanqihu.frontend.CfiAttribute
 class FtqPtr(implicit p: Parameters)  extends CircularQueuePtr[FtqPtr](p.frontendParameters.ftqParameters.ftqSize)
 
 class FtqFetchBlcokEntry extends FtqBundle {
-  val startAddr       = UInt(PcWidth.W)
-  val target      = UInt(PcWidth.W)
+  val startAddr       = UInt(pcWidth.W)
+  val target      = UInt(pcWidth.W)
   val endOffset   = UInt(FetchBlockOffsetWidth.W)
   val taken       = Bool()
   val mispredict = Bool()
@@ -57,19 +57,19 @@ object FtbState extends ChiselEnum{
 }
 
 class FtqBackendReadResp extends FtqBundle{
-  val fetchPc = UInt(PcWidth.W)
-  val predTarget = UInt(PcWidth.W)
+  val fetchPc = UInt(pcWidth.W)
+  val predTarget = UInt(pcWidth.W)
   val predTaken = Bool()
 }
 
 
 class FtqLookup extends FtqBundle {
-  val lookupPc = UInt(PcWidth.W)
+  val lookupPc = UInt(pcWidth.W)
   val ftqPtr = new FtqPtr
 }
 
 class FtqFetch extends FtqBundle {
-  val fetchPc = UInt(PcWidth.W)
+  val fetchPc = UInt(pcWidth.W)
   val ftqPtr = new FtqPtr
   val parallel = Bool()
 }

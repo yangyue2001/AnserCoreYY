@@ -9,7 +9,7 @@ import yanqihu.frontend.CfiAttribute
 class PredecodeInfo extends IfuBundle{
   val redirectValid = Bool()
   val endOffset = UInt(FetchBlockOffsetWidth.W)
-  val target = UInt(PcWidth.W)
+  val target = UInt(pcWidth.W)
   val taken = Bool()
   val cfiAttr = new CfiAttribute
 }
@@ -26,7 +26,7 @@ class PreDecodeReq extends IfuBundle{
   val inst = Vec(FetchBlockNumSlots, UInt(16.W))
   val predTaken = Bool()
   val predEndOffset = UInt(FetchBlockOffsetWidth.W)
-  val startPc = UInt(PcWidth.W)
-  val rasTopAddr = UInt(PcWidth.W)
-  val predTarget = UInt(PcWidth.W)
+  val startPc = UInt(pcWidth.W)
+  val rasTopAddr = UInt(pcWidth.W)
+  val predTarget = UInt(pcWidth.W)
 }

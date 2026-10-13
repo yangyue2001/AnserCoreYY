@@ -15,8 +15,8 @@ class PhrMeta  extends PhrBundle {
 
 /** Path information inserted by a taken CFI prediction. */
 class PhrUpdateReq  extends PhrBundle {
-  val cfiPc = UInt(PcWidth.W)
-  val target = UInt(PcWidth.W)
+  val cfiPc = UInt(pcWidth.W)
+  val target = UInt(pcWidth.W)
 }
 
 class PhrOverrideReq  extends PhrBundle {

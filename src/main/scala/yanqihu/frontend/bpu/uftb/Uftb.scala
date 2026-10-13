@@ -7,7 +7,7 @@ import utils.SaturateCounter
 
 class Uftb extends UftbModule with UftbHelper {
   class UftbIO extends UftbBundle {
-    val s1Pc = Input(UInt(PcWidth.W))
+    val s1Pc = Input(UInt(pcWidth.W))
     val prediction = Output(new UftbPrediction)
     val meta = Output(new UftbMeta)
     val train      = Flipped(Valid(new UftbTrainReq))

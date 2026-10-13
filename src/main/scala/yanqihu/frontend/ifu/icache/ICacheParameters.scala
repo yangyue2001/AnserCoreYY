@@ -2,15 +2,13 @@ package yanqihu.frontend.ifu.icache
 
 import chisel3._
 import chisel3.util._
+
 import yanqihu.frontend.ifu.HasIfuParameters
-import yanqihu.frontend.ifu.icache
-import utils.EccType
 
 case class ICacheParameters(
   //icache
   sizeKB: Int = 32,
   nWays: Int = 4,
-  ecc: String = "parity",
   //mshr
   mshrSize: Int = 8,
   //waylookup
@@ -22,35 +20,25 @@ case class ICacheParameters(
 trait HasICacheParameters extends HasIfuParameters{
   def icacheParameters = ifuParameters.icache
 
-  def TagNumBanks = 2
-  def DataNumBanks = 8
+  def TagNumBanks = ICacheConstant.TagNumBanks
+  def DataNumBanks = ICacheConstant.DataNumBanks
 
-  def BlockBytes = 64
-  def BlockBits = BlockBytes * 8
+  def numWays = icacheParameters.nWays
+  def numSets = icacheParameters.sizeKB * 1024 / CachelineBytes / numWays
 
-  def NumWays = icacheParameters.nWays
-  def NumSets = icacheParameters.sizeKB * 1024 / BlockBytes / NumWays
-
-
-
-  def SetIdxWidth = log2Ceil(NumSets) // cacheline
-  def WayIdxWidth = log2Ceil(NumWays)
-  def OffsetWidth = log2Ceil(BlockBytes)
+  def SetIdxWidth = log2Ceil(numSets) // cacheline
+  def WayIdxWidth = log2Ceil(numWays)
+  def OffsetWidth = log2Ceil(CachelineBytes)
   def TagBankIdxWidth = log2Ceil(TagNumBanks)
 
-  def VaddrAliasWidth =  math.max(0, OffsetWidth + SetIdxWidth - pageOffsetWidth)
-
+  def VaddrAliasWidth =  math.max(0, OffsetWidth + SetIdxWidth - PageOffsetWidth)
   def HasVaddrAlias = VaddrAliasWidth > 0
 
 
-  def TagSetIdxWidth = SetIdxWidth - TagBankIdxWidth // tag sram 2banks
-  def DataSetIdxWidth = SetIdxWidth  // data sram 8banks  1 cacheline need 1 set
-
-  def DataWidth = 64
-
-  def TagWithECCWidth = EccType(icacheParameters.ecc, TagWidth).codeWidth
-  def DataWithECCWidth = EccType(icacheParameters.ecc, DataWidth).codeWidth
-  def TagWidth = paddrWidth - SetIdxWidth - WayIdxWidth - OffsetWidth
+  def TagSetIdxWidth = SetIdxWidth - TagBankIdxWidth
+  def DataSetIdxWidth = SetIdxWidth
+  def tagWidth = paddrWidth - SetIdxWidth - WayIdxWidth - OffsetWidth
+  def DataWidth = CachelineBits / DataNumBanks
 
   require(TagNumBanks > 1)
 

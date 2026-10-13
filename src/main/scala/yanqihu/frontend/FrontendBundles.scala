@@ -9,7 +9,7 @@ import yanqihu.frontend.ftq._
 import yanqihu.frontend.ifu.predecode.PredecodeInfo
 
 class BpuToFtqIO extends FrontendBundle{
-  val s1Fetch = Decoupled(UInt(PcWidth.W))
+  val s1Fetch = Decoupled(UInt(pcWidth.W))
   val s3Result = Decoupled(new BpuS3Result)
 }
 
@@ -65,4 +65,9 @@ class CfiAttribute extends Bundle {
   def hasPush: Bool = rasAction(1)
 
   def needIttage: Bool = isIndirect && !hasPop
+}
+
+
+object FrontendExcept extends ChiselEnum{
+  val pageFault, accessFault, hardwareError = Value
 }

@@ -38,13 +38,13 @@ class BpuS3Result extends BpuBundle{
   val meta = new BpuMeta
   val prediction = new BpuPrediction
   val s3FetchValid = Bool()
-  val s3FetchPC = UInt(PcWidth.W)
+  val s3FetchPC = UInt(pcWidth.W)
   val s3FtqPtr = new FtqPtr
 }
 
 // Bpu -> Ftq
 class BpuPrediction extends BpuBundle {
-  val target  = UInt(PcWidth.W)
+  val target  = UInt(pcWidth.W)
   val endOffset = UInt(FetchBlockOffsetWidth.W)
   val taken = Bool()
   val s3Override = Bool()
@@ -63,8 +63,8 @@ class BpuTrainMeta extends BpuBundle {
 }
 
 class BpuRedirect extends BpuBundle {
-  val cfiPc     = UInt(PcWidth.W)
-  val target    = UInt(PcWidth.W)
+  val cfiPc     = UInt(pcWidth.W)
+  val target    = UInt(pcWidth.W)
   val taken     = Bool()
   val rasAction = UInt(2.W)
   val meta      = new BpuRedirectMeta

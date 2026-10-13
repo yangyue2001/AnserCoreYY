@@ -5,14 +5,14 @@ import chisel3.util._
 import yanqihu.frontend.ftq.FtqPtr
 import utils.Rota
 
-class Ibuffer extends IBufferModule {
-  class IbufferIO extends IBufferBundle{
+class IBuffer extends IBufferModule {
+  class IBufferIO extends IBufferBundle{
     val flush = Input(Bool())
     val enq = Flipped(Decoupled(new IBufferReq))
     val deq = Vec(DecodeWidth, Valid(new InstPacket))
     val deqReady = Input(Bool())
   }
-  val io = IO(new IbufferIO)
+  val io = IO(new IBufferIO)
   //alias
   val flush = io.flush
   val enqValid = io.enq.valid

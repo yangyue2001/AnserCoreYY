@@ -23,9 +23,9 @@ class Ittage extends IttageModule with IttageHelper {
     //s2
     val s2PredPhr = Input(new PhrAllFoldedHistories)
     val s2Fire      = Input(Bool() )
-    val s2Pc        = Input(UInt(PcWidth.W))
+    val s2Pc        = Input(UInt(pcWidth.W))
     //s3
-    val s3Pc        = Input(UInt(PcWidth.W))
+    val s3Pc        = Input(UInt(pcWidth.W))
     val meta        = Output(new IttageMeta)
     val prediction = Output(new IttagePrediction)
 
@@ -33,7 +33,7 @@ class Ittage extends IttageModule with IttageHelper {
     val train       = Flipped(Decoupled(new BpuTrain))
     val trainS0Phr = Input(new PhrAllFoldedHistories)
     val trainS1Phr = Input(new PhrAllFoldedHistories)
-    val s1TrainPc   = Input(UInt(PcWidth.W))
+    val s1TrainPc   = Input(UInt(pcWidth.W))
   }
 
   val io = IO(new IttageIO)

@@ -53,7 +53,7 @@ trait HasIttageParameters extends HasBpuParameters {
   /* *** Region *** */
   def RegionNums:     Int     = ittageParameters.numRegionWays
   def RegionIdxWidth: Int = log2Ceil(RegionNums)
-  def RegionWidth:     Int    = PcWidth - TargetOffsetWidth
+  def RegionWidth:     Int    = pcWidth - TargetOffsetWidth
 
   //per table parameters
   def NumSets(implicit info: TageTableInfo): Int = info.numSets

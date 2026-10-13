@@ -14,12 +14,12 @@ class Tage extends TageModule with TableHelper {
     val predictReq     = Flipped(Valid(new TagePredReq))
     val ready       = Output(Bool())
     //s1
-    val s1Pc        = Input(UInt(PcWidth.W))
+    val s1Pc        = Input(UInt(pcWidth.W))
     val s1Offset    = Input(Vec(NumBr, UInt(FetchBlockOffsetWidth.W)))
     val s1Fire      = Input(Bool())
     val s1PredPhr   = Input(new PhrAllFoldedHistories)
     //s2
-    val s2Pc        = Input(UInt(PcWidth.W))
+    val s2Pc        = Input(UInt(pcWidth.W))
     val meta        = Output( Vec(NumBr,new TageMeta) )
     val prediction = Output( Vec(NumBr,Bool()))
     val resetDown   = Output(Bool())

@@ -53,26 +53,26 @@ class IttageTableResp(implicit info: TageTableInfo) extends IttageBundle {
 }
 
 class IttagePredReq  extends IttageBundle{
-  val pc = UInt(PcWidth.W)
+  val pc = UInt(pcWidth.W)
   val predPhr = new PhrAllFoldedHistories
 }
 
 
 class IttagePrediction  extends IttageBundle {
   val taken = Bool()
-  val target = UInt(PcWidth.W)
+  val target = UInt(pcWidth.W)
 }
 
 class IttageMeta extends IttageBundle {
   val providerValid    = Bool()
   val providerTableIdx = UInt(TableIdxWidth.W)
-  val providerTarget   = UInt(PcWidth.W)
+  val providerTarget   = UInt(pcWidth.W)
   val providerCtr      = new SaturateCounter(ConfidenceCtrWidth)
   val providerUseful   = new SaturateCounter(UsefulCtrWidth)
   val providerWayIdx   = UInt(WayIdxWidth.W)
   val altUsed          = Bool()
   val altTableValid    = Bool()
-  val altTarget = UInt(PcWidth.W)
+  val altTarget = UInt(pcWidth.W)
   val altTableIdx      = UInt(TableIdxWidth.W)
   val altCtr           = new SaturateCounter(ConfidenceCtrWidth)
   val altWayIdx = UInt(WayIdxWidth.W)

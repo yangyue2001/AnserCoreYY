@@ -2,11 +2,8 @@ package yanqihu.frontend.ifu.ibuffer
 
 import chisel3._
 import chisel3.util._
-import utils.CircularQueuePtr
-import yanqihu.Parameters
-import yanqihu.frontend.ftq.FtqPtr
 
-class IBufferPtr(implicit p: Parameters)  extends CircularQueuePtr[IBufferPtr](p.frontendParameters.ifuParameters.ibuffer.ibufferSize)
+import yanqihu.frontend.ftq.FtqPtr
 
 
 class IBufferEntry extends IBufferBundle{
@@ -19,13 +16,7 @@ class IBufferExceptionEntry extends IBufferBundle{
   val valid = Bool()
   val pageFault = Bool()
   val accessFault = Bool()
-  val ptr = new IBufferPtr
 }
-
-object FrontendExcept extends ChiselEnum{
-  val pageFault, accessFault, hardwareError = Value
-}
-
 
 class InstPacket extends IBufferBundle{
   val inst = UInt(32.W)

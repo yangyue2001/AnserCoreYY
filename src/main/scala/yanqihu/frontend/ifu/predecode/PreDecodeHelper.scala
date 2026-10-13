@@ -15,7 +15,7 @@ trait PreDecodeHelper extends HasIfuParameters {
 
     require(rvcOffset.getWidth == 11)
     require(rviOffset.getWidth == 20)
-    SignExt(Mux(isRvc, SignExt(rvcOffset, 20), rviOffset), PcWidth)
+    SignExt(Mux(isRvc, SignExt(rvcOffset, 20), rviOffset), pcWidth)
   }
 
   def getBrOffset(inst: UInt, isRvc: Bool): UInt = {
@@ -24,7 +24,7 @@ trait PreDecodeHelper extends HasIfuParameters {
 
     require(rvcOffset.getWidth == 8 )
     require(rviOffset.getWidth == 12)
-    SignExt(Mux(isRvc, SignExt(rvcOffset, 12), rviOffset), PcWidth)
+    SignExt(Mux(isRvc, SignExt(rvcOffset, 12), rviOffset), pcWidth)
   }
 
   def getCfiType(inst: UInt, isRvc: Bool): PreDecodeCfiAttribute = {

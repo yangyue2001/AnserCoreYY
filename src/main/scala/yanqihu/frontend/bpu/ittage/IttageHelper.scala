@@ -8,7 +8,7 @@ import yanqihu.frontend.bpu.phr.PhrAllFoldedHistories
 trait IttageHelper{
   this: HasIttageParameters =>
   def getBankIndex(pc: UInt): UInt ={
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     pc(BankIdxWidth-1, 0)
   }
 
@@ -27,12 +27,12 @@ trait IttageHelper{
   }
 
   def getOffset(target: UInt): UInt = {
-    require(target.getWidth == PcWidth)
+    require(target.getWidth == pcWidth)
     target(TargetOffsetWidth-1, 0)
   }
 
   def getRegion(pc: UInt): UInt = {
-    pc(PcWidth-1, TargetOffsetWidth)
+    pc(pcWidth-1, TargetOffsetWidth)
   }
 
   def getMaxTagWidth: Int = {

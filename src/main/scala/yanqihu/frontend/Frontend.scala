@@ -5,7 +5,7 @@ import chisel3.util._
 
 class Frontend extends FrontendModule{
   class FrontendIO extends FrontendBundle {
-    val resetVector = Input(UInt(PcWidth.W))
+    val resetVector = Input(UInt(pcWidth.W))
     //val fromTop = Flipped(new )
   }
 }

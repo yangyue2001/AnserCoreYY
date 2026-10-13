@@ -7,15 +7,15 @@ import chisel3.util._
 trait UftbHelper extends HasUftbParameters{
 
   def getTag(pc: UInt) :UInt ={
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     pc(TagWidth-1, 0)
   }
 
   def getTarget(pc: UInt, tarStat: UInt, lower: UInt): UInt = {
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     val lowerWidth = lower.getWidth
 
-    val pcHigh = pc(PcWidth-1, lowerWidth)
+    val pcHigh = pc(pcWidth-1, lowerWidth)
     val plusOne  = (pcHigh + 1.U)
     val minusOne = (pcHigh - 1.U)
     val targetHigh = MuxLookup(tarStat, pcHigh)(Seq(
@@ -27,16 +27,16 @@ trait UftbHelper extends HasUftbParameters{
   }
 
   def getFallThroughTarget(pc: UInt, carry: Bool, lower: UInt): UInt = {
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     val lowerWidth = lower.getWidth
-    val pcHigh = pc(PcWidth-1, lowerWidth)
+    val pcHigh = pc(pcWidth-1, lowerWidth)
     val plusOne  = (pcHigh + 1.U)
     val targetHigh = Mux(carry, plusOne, pcHigh)
     Cat(targetHigh, lower)
   }
 
   def getFallThroughOffset(pc: UInt, carry: Bool, lower: UInt): UInt = {
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     val lowerWidth = lower.getWidth
     val pcLower = pc(lowerWidth-1, 0)
     Cat(carry, pcLower) - Cat(0.U(1.W),lower)

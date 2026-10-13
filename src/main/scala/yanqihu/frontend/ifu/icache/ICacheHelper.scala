@@ -19,7 +19,7 @@ trait ICacheHelper{
   }
 
   def getSetIndex(pc: UInt): UInt = {
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     val fullPc = Cat(pc, 0.U(InstOffsetWidth.W))
     fullPc(SetIdxWidth+OffsetWidth-1, OffsetWidth)
   }
@@ -30,10 +30,10 @@ trait ICacheHelper{
   }
 
   def isCrossCacheline(pc: UInt): Bool = {
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     val fullPc = Cat(pc, 0.U(InstOffsetWidth.W))
     val cachelineOffset = fullPc(OffsetWidth-1,1)
-    cachelineOffset > ((BlockBytes - FrontendBlockBytes)/MinInstBytes).U
+    cachelineOffset > ((CachelineBytes - FrontendBlockBytes)/MinInstBytes).U
   }
   //def getData
 }

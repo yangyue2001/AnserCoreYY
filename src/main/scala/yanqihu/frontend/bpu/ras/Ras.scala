@@ -19,7 +19,7 @@ class Ras extends RasModule {
   val recoverValid = io.recover.valid
   val recover = io.recover.bits
 
-  val stack = Reg(Vec(NumEntrys, UInt(PcWidth.W)))
+  val stack = Reg(Vec(NumEntrys, UInt(pcWidth.W)))
   val sp = Reg(new RasPtr(NumEntrys))
 
 /*

@@ -21,8 +21,8 @@ class MemToFrontend extends YQHBundle{
 }
 
 class TopToFrontendIO extends YQHBundle{
-  val resetVector = Output(UInt(PcWidth.W))
-  val hartId = Output(UInt(HartIdWidth.W))
+  val resetVector = Output(UInt(pcWidth.W))
+  val hartId = Output(UInt(hartIdWidth.W))
 }
 
 
@@ -45,7 +45,7 @@ class FrontendToBackendIO extends YQHBundle {
 class BackendRedirect extends YQHBundle{
   val ftqPtr = new FtqPtr
   val cfiIndex = UInt(FetchBlockOffsetWidth.W)
-  val target = UInt(PcWidth.W)
+  val target = UInt(pcWidth.W)
   val taken = Bool()
   val reason = RedirectCause()
 }
@@ -60,61 +60,9 @@ object RedirectCause extends ChiselEnum {
 }
 
 
-object TlbExcept extends ChiselEnum {
-  val pageFault, accessFault = Value
-}
 
-object TlbCmd extends ChiselEnum{
-  val read, write, exec = Value
-}
-
-
-class TlbEntry extends YQHBundle{
-  val pbmt = UInt(2.W)
-  //val asid =
-  //val ppn =
-  //val page_size =
-  //val
-}
-
-class TlbReq extends YQHBundle{
-  val vaddr = UInt(vaddrWidth.W)
-  val cmd = TlbCmd()
-}
-
-class ITlbIO extends YQHBundle{
-  val req = Valid(new TlbReq)
-  val kill = Output(Bool())
-  val resp = Input(new TlbResp)
-}
-
-class TlbResp extends YQHBundle{
-  val exceptValid = Bool()
-  val except = TlbExcept()
-  val paddr = UInt(paddrWidth.W)
-  val hit = Bool()
-  val pbmt = UInt(2.W)
-}
-
-
-class PmpReq extends YQHBundle{
-  val pAddr = UInt(paddrWidth.W)
-}
-
-class PmpResp extends YQHBundle{
-  val ld     = Output(Bool())
-  val st     = Output(Bool())
-  val instr  = Output(Bool())
-  val mmio   = Output(Bool())
-  val atomic = Output(Bool())
-}
-
-class MemReq extends YQHBundle{
-  val addr = UInt(paddrWidth.W)
-  val id = UInt(3.W)
-}
-
-class MemResp extends YQHBundle{
-  val data = UInt(ICacheToL2DataWidth.W)
-  val id = UInt(3.W)
+object PrivMode extends ChiselEnum{
+  val uMode = Value("b00".U(2.W))
+  val sMode = Value("b01".U(2.W))
+  val mMode = Value("b11".U(2.W))
 }

@@ -9,11 +9,11 @@ class RasPtr(numEntrys: Int) extends QueuePtr[RasPtr](numEntrys)
 
 class RasMeta extends RasBundle{
   val sp      = new RasPtr(NumEntrys)
-  val topAddr = UInt(PcWidth.W)
+  val topAddr = UInt(pcWidth.W)
 }
 
 class RasUpdateReq extends RasBundle {
-  val pushPc    = UInt(PcWidth.W)
+  val pushPc    = UInt(pcWidth.W)
 }
 
 class RasRecoverReq extends RasBundle {
@@ -22,5 +22,5 @@ class RasRecoverReq extends RasBundle {
 }
 
 class RasPrediction extends RasBundle {
-  val topRetAddr = UInt(PcWidth.W)
+  val topRetAddr = UInt(pcWidth.W)
 }

@@ -7,17 +7,17 @@ import yanqihu.Parameters
 
 
 class ICacheFetchReq extends ICacheBundle{
-  val fetchPc = UInt(PcWidth.W)
-  val wayMask = Vec(2, UInt(NumWays.W))
+  val fetchPc = UInt(pcWidth.W)
+  val wayMask = Vec(2, UInt(numWays.W))
   val parallel = Bool()
 }
 
 
 class ICacheRefillReq extends ICacheBundle{
   val setIdx = UInt(SetIdxWidth.W)
-  val pTag = UInt(TagWidth.W)
-  val wayMask = UInt(NumWays.W)
-  val data = UInt(BlockBits.W)
+  val pTag = UInt(tagWidth.W)
+  val wayMask = UInt(numWays.W)
+  val data = UInt(CachelineBits.W)
 }
 
 class ICacheMissReq extends ICacheBundle{
@@ -33,7 +33,7 @@ class WayLookupPtr(implicit p: Parameters) extends CircularQueuePtr[WayLookupPtr
 
 
 class WayLookupTlbEntry extends ICacheBundle{
-  val pTag = UInt(TagWidth.W)
+  val pTag = UInt(tagWidth.W)
   val isNC = Bool()
   val isMMIO = Bool()
 }
@@ -55,7 +55,7 @@ class WayLookupEntry extends ICacheBundle{
   val itlb = new WayLookupTlbEntry
   val vSetIdx = UInt(SetIdxWidth.W)
   val crossCacheline = Bool()
-  val wayMask = Vec(2, UInt(NumWays.W))
+  val wayMask = Vec(2, UInt(numWays.W))
 }
 
 class MshrEntry extends ICacheBundle{

@@ -41,15 +41,15 @@ class FtbEntry extends FtbBundle {
 }
 
 class FtbPredReq extends FtbBundle {
-  val pc = UInt(PcWidth.W)
+  val pc = UInt(pcWidth.W)
 }
 
 class FtbPrediction extends FtbBundle {
   val branchHit         = Bool()
   val tailHit           = Bool()
-  val fallThroughTarget = UInt(PcWidth.W)
-  val branchTarget      = UInt(PcWidth.W)
-  val tailTarget        = UInt(PcWidth.W)
+  val fallThroughTarget = UInt(pcWidth.W)
+  val branchTarget      = UInt(pcWidth.W)
+  val tailTarget        = UInt(pcWidth.W)
   val fallThroughOffset = UInt(FetchBlockOffsetWidth.W)
   val branchOffset      = UInt(FetchBlockOffsetWidth.W)
   val tailOffset        = UInt(FetchBlockOffsetWidth.W)

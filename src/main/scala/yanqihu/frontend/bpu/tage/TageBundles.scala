@@ -72,7 +72,7 @@ class TageMeta extends TageBundle{
 }
 
 class TagePredReq  extends TageBundle{
-  val pc = UInt(PcWidth.W)
+  val pc = UInt(pcWidth.W)
   val predPhr = new PhrAllFoldedHistories
 }
 

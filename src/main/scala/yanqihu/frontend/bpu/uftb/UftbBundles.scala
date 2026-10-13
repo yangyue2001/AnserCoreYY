@@ -15,7 +15,7 @@ class UftbPrediction extends UftbBundle {
   val taken       = Bool()
   val hit         = Bool()
   val cfiOffset   = UInt(FetchBlockOffsetWidth.W)
-  val target      = UInt(PcWidth.W)
+  val target      = UInt(pcWidth.W)
   val isJalr      = Bool()
 }
 
@@ -39,9 +39,9 @@ class UftbMeta extends UftbBundle {
 
 class UftbTrainReq extends UftbBundle {
   val s3Override = Bool()
-  val trainPc    = UInt(PcWidth.W)
+  val trainPc    = UInt(pcWidth.W)
   val finalTaken = Vec(NumBr, Bool())
-  val finalTarget = UInt(PcWidth.W)
+  val finalTarget = UInt(pcWidth.W)
   val ftbMeta = new UftbMeta
   val uftbMeta       = new UftbMeta
 }

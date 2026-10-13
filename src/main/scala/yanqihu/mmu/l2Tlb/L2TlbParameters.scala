@@ -13,12 +13,11 @@ case class PteCacheParams(
   val replacer: String,
 ){
   def numSets: Int = size/ numWays
+
+  require(numWays > 1) //Don't suppot direct mapping.
 }
 
 case class L2TlbParameters(
-  ptLevel0Size: Int = 2048,
-  ptLevel0Ways: Int = 4,
-
   pteCacheParams: Seq[PteCacheParams] = Seq(
     PteCacheParams(2048, 4, "plru"), //leaf 0
     PteCacheParams(512, 4, "plru"), // leaf 1

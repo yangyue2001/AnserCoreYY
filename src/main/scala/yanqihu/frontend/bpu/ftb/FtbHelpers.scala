@@ -8,25 +8,25 @@ trait FtbHelper {
   this: HasFtbParameters =>
 
   def getBankIndex(pc: UInt): UInt = {
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     pc(BankIdxWidth-1 , 0)
   }
 
   def getSetIndex(pc: UInt) :UInt ={
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     pc(BankIdxWidth+SetIdxWidth-1, BankIdxWidth)
   }
 
   def getTag(pc: UInt) :UInt ={
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     pc(SetIdxWidth+BankIdxWidth+TagWidth-1, SetIdxWidth+BankIdxWidth)
   }
 
   def getTarget(pc: UInt, tarStat: UInt, lower: UInt): UInt = {
-    require(pc.getWidth == PcWidth)
+    require(pc.getWidth == pcWidth)
     val lowerWidth = lower.getWidth
 
-    val pcHigh = pc(PcWidth-1, lowerWidth)
+    val pcHigh = pc(pcWidth-1, lowerWidth)
     val plusOne  = (pcHigh + 1.U)
     val minusOne = (pcHigh - 1.U)
     val targetHigh = MuxLookup(tarStat, pcHigh)(Seq(
